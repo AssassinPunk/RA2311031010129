@@ -19,6 +19,7 @@ Within the same type, more recent notifications rank higher using their Unix tim
 
 ### Formula
 score = (typeWeight * 1000000) + unixTimestamp
+
 Multiplying weight by 1,000,000 ensures type always takes priority over recency. So a slightly older Placement will always rank above any Result or Event.
 
 ## Handling New Notifications Efficiently
