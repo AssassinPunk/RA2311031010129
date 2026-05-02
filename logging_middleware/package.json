@@ -1,0 +1,14 @@
+{
+  "name": "logging_middleware",
+  "version": "1.0.0",
+  "description": "reusable logging middleware for affordmed evaluation",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "author": "alok maiti",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.4.2"
+  }
+}
