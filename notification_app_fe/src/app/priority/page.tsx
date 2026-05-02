@@ -18,7 +18,6 @@ import { useNotifications } from '../../hooks/useNotifications';
 import NotificationCard from '../../components/NotificationCard';
 import { getTopN } from '../../utils/priorityScore';
 
-// user can pick how many top notifications to see
 const TOP_N_OPTIONS = [5, 10, 15, 20];
 
 export default function PriorityInboxPage() {
@@ -27,35 +26,31 @@ export default function PriorityInboxPage() {
   const { notifications, loading, error, refetch, markViewed } =
     useNotifications();
 
-  // apply priority scoring and get top n
   const priorityNotifications = getTopN(notifications, topN);
   const newCount = priorityNotifications.filter(n => !n.viewed).length;
 
   return (
     <Container maxWidth="md" sx={{ py: 4 }}>
       <Box
-        display="flex"
-        justifyContent="space-between"
-        alignItems="center"
-        mb={3}
-        flexWrap="wrap"
-        gap={2}
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          mb: 3,
+          flexWrap: 'wrap',
+          gap: 2,
+        }}
       >
-        <Box display="flex" alignItems="center" gap={2}>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
           <Typography variant="h5" fontWeight="bold">
             ⭐ Priority Inbox
           </Typography>
           {newCount > 0 && (
-            <Chip
-              label={`${newCount} new`}
-              color="primary"
-              size="small"
-            />
+            <Chip label={`${newCount} new`} color="primary" size="small" />
           )}
         </Box>
 
-        <Box display="flex" gap={2} alignItems="center">
-          {/* select how many top notifications to show */}
+        <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
           <FormControl size="small" sx={{ minWidth: 120 }}>
             <InputLabel>Show Top</InputLabel>
             <Select
@@ -82,21 +77,18 @@ export default function PriorityInboxPage() {
         Click a notification to mark it as viewed.
       </Alert>
 
-      {/* loading state */}
       {loading && (
-        <Box display="flex" justifyContent="center" mt={6}>
+        <Box sx={{ display: 'flex', justifyContent: 'center', mt: 6 }}>
           <CircularProgress />
         </Box>
       )}
 
-      {/* error state */}
       {error && (
         <Alert severity="error" sx={{ mb: 2 }}>
           {error}
         </Alert>
       )}
 
-      {/* priority notifications list */}
       {!loading &&
         priorityNotifications.map((notification, index) => (
           <NotificationCard
